@@ -9,24 +9,27 @@
   </head>
   <body>
     <div id="time">
-      <div class="circle">
+      <div class="circle circle_1" style="--clr: #ff0055">
+        <div class="dots hr_dot"></div>
         <svg>
           <circle cx="70" cy="70" r="70"></circle>
-          <circle cx="70" cy="70" r="70"></circle>
+          <circle cx="70" cy="70" r="70" id="hh"></circle>
         </svg>
         <div id="hours">00</div>
       </div>
-      <div class="circle">
+      <div class="circle circle_2" style="--clr: #2fff00">
+        <div class="dots min_dot"></div>
         <svg>
           <circle cx="70" cy="70" r="70"></circle>
-          <circle cx="70" cy="70" r="70"></circle>
+          <circle cx="70" cy="70" r="70" id="mm"></circle>
         </svg>
         <div id="minutes">00</div>
       </div>
-      <div class="circle">
+      <div class="circle circle_3" style="--clr: #0033ff">
+        <div class="dots sec_dot"></div>
         <svg>
           <circle cx="70" cy="70" r="70"></circle>
-          <circle cx="70" cy="70" r="70"></circle>
+          <circle cx="70" cy="70" r="70" id="ss"></circle>
         </svg>
         <div id="seconds">00</div>
       </div>
@@ -38,6 +41,14 @@
         let minutes = document.getElementById("minutes");
         let seconds = document.getElementById("seconds");
 
+        let hh = document.getElementById("hh");
+        let mm = document.getElementById("mm");
+        let ss = document.getElementById("ss");
+
+        let hr_dot = document.querySelector(".hr_dot");
+        let min_dot = document.querySelector(".min_dot");
+        let sec_dot = document.querySelector(".sec_dot");
+
         let h = new Date().getHours();
         let m = new Date().getMinutes();
         let s = new Date().getSeconds();
@@ -47,9 +58,17 @@
         m = m < 10 ? "0" + m : m;
         s = s < 10 ? "0" + s : s;
 
-        hours.innerHTML = h;
-        minutes.innerHTML = m;
-        seconds.innerHTML = s;
+        hours.innerHTML = h + "<br><span>Hours</span>";
+        minutes.innerHTML = m + "<br><span>Minutes</span>";
+        seconds.innerHTML = s + "<br><span>Seconds</span>";
+
+        hh.style.strokeDashoffset = 440 - (440 * h) / 24;
+        mm.style.strokeDashoffset = 440 - (440 * m) / 60;
+        ss.style.strokeDashoffset = 440 - (440 * s) / 60;
+
+        hr_dot.style.transform = `rotate(${h * 15}deg)`;
+        min_dot.style.transform = `rotate(${m * 6}deg)`;
+        sec_dot.style.transform = `rotate(${s * 6}deg)`;
       });
     </script>
   </body>
