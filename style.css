@@ -94,3 +94,12 @@ body {
   border-radius: 50%;
   box-shadow: 0 0 20px var(--clr), 0 0 60px var(--clr);
 }
+
+@media (max-width: 650px) {
+  .time {
+    display: flex;
+  }
+  #time {
+    flex-direction: column;
+  }
+}
